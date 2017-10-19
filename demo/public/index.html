@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery.js"></script>
+	<script src="jQuery.upload.js"></script>
+	<style>
+		.upload{
+			width: 200px;
+			height: 200px;
+			background-color: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="upload">
+		<input type="file">
+	</div>	
+	<script>
+		var a =$('.upload').upload({
+		  url: '/upload',
+		  dataType: 'json',
+		  maxFileSize:1024*1024,
+		  allowedTypes: 'image/*',
+		  extFilter: 'jpg;png;gif',
+		  onInit: function(msg){
+		  	console.log('init '+msg);
+		  },
+		  onBeforeUpload: function(id){
+		  	console.log('onBeforeUpload',id);
+		  },
+		  onNewFile: function(id, file){
+		  	console.log('onNewFile');
+		  },
+		  onComplete: function(){
+		  	console.log('onComplete');
+		  },
+		  onUploadProgress: function(id, percent){
+		  	console.log('onUploadProgress',percent);
+		  },
+		  onUploadSuccess: function(id, data){
+		  	console.log('onUploadSuccess',id,data);
+		  },
+		  onUploadError: function(id, message){
+		  	console.log('onUploadError',message);
+		  },
+		  onFilesMaxError:function(file){
+		  	console.log('onFilesMaxError',file);
+		  },
+		  onFileTypeError: function(file){
+		  	console.log('onFileTypeError',file);
+		  },
+		  onFileSizeError: function(file){
+		  	console.log('onFileSizeError',file);
+		  },
+		  onFileExtError: function(file){
+		  	console.log('onFileExtError',file);
+		  },
+		  onFallbackMode: function(msg){
+		  	console.log('onFallbackMode',msg);
+		  }
+		});
+	</script>
+</body>
+</html>
