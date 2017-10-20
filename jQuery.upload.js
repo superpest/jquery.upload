@@ -90,6 +90,11 @@
 			var files = e.originalEvent.dataTransfer.files;
 			self.queueFiles(files);
 		});
+		this.element.find('input[type=file]').on('change',function(e){
+			var files = e.target.files;
+			self.queueFiles(files);
+			$(this).val('');
+		})
 		
 	};
 
