@@ -9,25 +9,24 @@
 		url:document.URL,
 		method:'POST',
 		dataType:'json',
-		maxFileSize:2048*1024, // (b)
-		allowedTypes:'*',// image/jpeg
-		extFileter:null, // jpg;png
-		maxFiles:1,
-		extraData:{},
-		fileName:'file',
-		onInit:function(msg){},
-		onNewFile:function(index,file){},
-		onFallbackMode:function(message){},
-		onFileSizeError:function(file){},
-		onFileTypeError:function(file){},
-		onFileExtError:function(file){},
-		onFilesMaxError:function(file){},
-		onFilesMaxError:function(file){},
-		onComplete:function(element){},
-		onBeforeUpload:function(id){},
-		onUploadProgress:function(id,percent){},
-		onUploadSuccess:function(id,data){},
-		onUploadError:function(id,msg){},
+		maxFileSize:2048*1024, //限制大小 单位是b， 1M = 1024*1024*1024
+		allowedTypes:'*',//文件类型 image/jpeg
+		extFileter:null, //文件后缀格式 多个使用;分开 如jpg;png
+		maxFiles:1, //最多上传个数
+		extraData:{}, //附带的数据 {} 格式
+		fileName:'file', //文件的name值
+		onInit:function(msg){}, //事件监听成功
+		onNewFile:function(index,file){}, //选择添加文件正确
+		onFallbackMode:function(message){}, //浏览器检测结果
+		onFileSizeError:function(file){}, //文件太大
+		onFileTypeError:function(file){}, //文件类型不对
+		onFileExtError:function(file){}, //文件格式不对
+		onFilesMaxError:function(file){}, //文件数量不对
+		onComplete:function(element){}, //上传ajax完成
+		onBeforeUpload:function(id){}, //开始上传前
+		onUploadProgress:function(id,percent){}, //开始上传时  可做进度条
+		onUploadSuccess:function(id,data){}, //上传成功
+		onUploadError:function(id,msg){} //上传错误
 	};
 	function Upload(element,options) {
 		this.element = $(element);
@@ -94,7 +93,7 @@
 			var files = e.target.files;
 			self.queueFiles(files);
 			$(this).val('');
-		})
+		});
 		
 	};
 
@@ -139,7 +138,7 @@
 
 		}
 
-		if(this.hasQueueRuning){
+		if(this.hasQueueRuning){//选择上传后，要上传完毕 才允许再次选择上传
 			return false;
 		}
 		if(this.queue.length === len){
@@ -149,7 +148,7 @@
 	};
 	Upload.prototype.processQueue = function() {
 		var self = this;
-		this.queuePosition++; //上传的次数？
+		this.queuePosition++; //依次上传
 		if(this.queuePosition >= this.queue.length){
 			this.settings.onComplete.call(this.element);
 			this.queuePosition = this.queue.length -1;
