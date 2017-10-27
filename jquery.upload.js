@@ -1,7 +1,7 @@
 /**
-*	作者：superpest
-*	地址：https://github.com/superpest/jquery.upload
-*   版本：v0.1 Beta
+*	author: superpest
+*	url: https://github.com/superpest/jquery.upload
+*       version: v0.1 Beta
 */	
 
 (function($){
