@@ -9,7 +9,7 @@
 		url:document.URL,
 		method:'POST',
 		dataType:'json',
-		maxFileSize:2048*1024, //限制大小 单位是b， 1M = 1024*1024*1024
+		maxFileSize:2048*1024, //限制大小 单位是b， 1M = 1024*1024
 		allowedTypes:'*',//文件类型 image/jpeg
 		extFileter:null, //文件后缀格式 多个使用;分开 如jpg;png
 		maxFiles:1, //最多上传个数
