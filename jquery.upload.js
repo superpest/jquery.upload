@@ -138,7 +138,7 @@
 
 		}
 
-		if(this.hasQueueRuning){//选择上传后，要上传完毕 才允许再次选择上传
+		if(this.hasQueueRuning){//再次选择上传后，如果要上一次还没有上传完毕，不需要重复执行上传
 			return false;
 		}
 		if(this.queue.length === len){
@@ -200,6 +200,7 @@
 				self.settings.onUploadError.call(self.element,self.queuePosition,errMsg);
 			},
 			complete:function(xhr,textStatus){
+				// 继续上传下一个
 				self.processQueue();
 			}
 		})
